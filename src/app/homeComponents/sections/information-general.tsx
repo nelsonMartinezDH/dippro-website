@@ -1,41 +1,113 @@
-import {CheckCircle, Users, Building2, FileText, MapPin, Award} from "lucide-react"
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card"
-import {useEffect, useState} from "react";
-import {Badge} from "@/components/ui/badge";
+"use client"
+
+import { CheckCircle, Users, Building2, FileText, MapPin, Award, User } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import React, { useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import StudentExperiencesComponent from "../layouts/information-general/StudentExperienciesComponent";
+
+interface SlideDto {
+    id: number;
+    imageUrl: string;
+    title?: string;
+}
+
+interface StatisticsDto {
+  idDto: number;
+  empresasAliadasDto: string;
+  tasaExitoDto: string;
+  estudiantesAnioDto: string;
+  vinculacionLaboralDto: string;
+}
+
+interface TeamMemberDto {
+  idDto: number;
+  nameDto: string;
+  roleDto: string;
+  descriptionDto: string;
+  imageUrlDto: string;
+}
 
 export default function InformationGeneral() {
-    const [currentSlide, setCurrentSlide] = useState(0)
+    //ESTADOS
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [sliderData, setSliderData] = useState<SlideDto[]>([])
+    const [statistics, setStatistics] = useState<StatisticsDto | null>(null);
+    const [teamMembers, setTeamMembers] = useState<TeamMemberDto[]>([]);
 
-    const slides = [
-        {
-            image: "https://www.unimagdalena.edu.co/Content/Imagenes/Sliders/DireccionesOrganizativas/slider-20250317095855_872.jpg",
-            title: "Oficina de Prácticas Profesionales"
-        },
-        {
-            image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKn4OFAV9P85b_dV1ym67dnPRoFqJKH76QbGbRGMsoroRoEknMiNdpofJT-y-gTczS_QdIdUBwi9OBCVM8lao13YIybkG2V-mRiL4JtDjzmOuV_yvHeO8CdU3SCPQeazllzOG3I1YJ3ZHXiQJCGlBZp3Y4v6ELl31rWUyi2Rqu_I6Nyd1wCruKMqa608N6/s16000-rw/unnamed%20-%202025-05-22T200027.167.jpg",
-            title: "Campus Principal"
-        },
-        {
-            image: "https://unimagdalena.edu.co/Content/ArchivosPublicaciones/imagenes/20220610123453.483.jpeg",
-            title: "Universidad Comprometida"
-        },
-        {
-            image: "https://www.unimagdalena.edu.co/Content/ArchivosPublicaciones/imagenes/20240630112638.087.jpg",
-            title: "Instalaciones Modernas"
+    // URLs de la API y del servidor
+    const UrlSliderPath = "http://localhost:5213/api/slider";
+    const baseServerUrl = "http://localhost:5213";
+    const apiUrl = "http://localhost:5213/api"
+
+    const getFullImageUrl = (path: string) => {
+        if (path.startsWith('http')) {
+            return path;
         }
-    ]
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % slides.length)
+        return `${baseServerUrl}${path}`;
     }
 
+    // useEffect para cargar estadisticas
     useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide()
-        }, 5000)
+        fetch("http://localhost:5213/api/statistics")
+            .then((res) => {
+                if (!res.ok) throw new Error("Fallo al cargar estadísticas.");
+                return res.json();
+            })
+            .then((data: StatisticsDto) => {
+                setStatistics(data);
+            })
+            .catch((err) => {
+                console.error("Error al obtener estadísticas:", err);
+            });
+    }, []);
 
-        return () => clearInterval(interval)
-    }, [])
+    // useEffect para cargar Slides
+    useEffect(() => {
+        const fetchSlides = async () => {
+            try {
+                const res = await fetch(UrlSliderPath);
+                if (!res.ok) throw new Error(`Error al cargar slides: ${res.status}`);
+                const data: SlideDto[] = await res.json();
+                setSliderData(data);
+            } catch (err) {
+                console.error("Error al obtener sliders de la API:", err);
+            }
+        };
+        fetchSlides();
+    }, []);
+
+    // useEffect para cargar equipo DIPPRO
+    useEffect(() => {
+        fetch(`${apiUrl}/team`)
+            .then((res) => {
+                if (!res.ok) throw new Error("Fallo al cargar el equipo.");
+                return res.json();
+            })
+            .then((data: TeamMemberDto[]) => {
+                setTeamMembers(data);
+            })
+            .catch((err) => {
+                console.error("Error al obtener el equipo:", err);
+            });
+    }, []);
+
+    useEffect(() => {
+        if (sliderData.length > 0) {
+            const interval = setInterval(() => {
+                nextSlide()
+            }, 5000)
+
+            return () => clearInterval(interval)
+        }
+    }, [sliderData]);
+
+    const nextSlide = () => {
+        if (sliderData.length > 0)
+            setCurrentSlide((prev) => (prev + 1) % sliderData.length);
+    }
+
+    const slidesToDisplay = sliderData;
 
     return (
         <div className="space-y-8">
@@ -49,29 +121,28 @@ export default function InformationGeneral() {
                 {/* Slider */}
                 <div className="absolute right-0 top-0 h-full w-2/3">
                     <div className="relative h-full overflow-hidden">
-                        {slides.map((slide, index) => (
-                            <div key={index}
-                                 className={`absolute inset-0 transition-transform duration-500 ease-in-out ${
-                                     index === currentSlide ? 'translate-x-0' :
-                                         index < currentSlide ? '-translate-x-full' : 'translate-x-full'
-                                 }`}
+                        {slidesToDisplay.map((slide, index) => (
+                            <div key={slide.id || index}
+                                className={`absolute inset-0 transition-transform duration-500 ease-in-out ${index === currentSlide ? 'translate-x-0' :
+                                        index < currentSlide ? '-translate-x-full' : 'translate-x-full'
+                                    }`}
                             >
                                 <img
-                                    src={slide.image || "placeholder.svg"}
+                                    src={getFullImageUrl(slide.imageUrl)}
                                     alt={slide.title}
                                     className="object-cover object-center opacity-40 w-full h-full"
                                 />
                             </div>
                         ))}
                     </div>
+
                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-                        {slides.map((_, index) => (
+                        {slidesToDisplay.map((_, index) => (
                             <button
                                 key={index}
                                 onClick={() => setCurrentSlide(index)}
-                                className={`w-2 h-2 rounded-full transition-colors ${
-                                    index === currentSlide ? 'bg-white' : 'bg-white/50'
-                                }`}
+                                className={`w-2 h-2 rounded-full transition-colors ${index === currentSlide ? 'bg-white' : 'bg-white/50'
+                                    }`}
                             />
                         ))}
                     </div>
@@ -82,10 +153,10 @@ export default function InformationGeneral() {
                     <div className="max-w-2xl">
                         <div className="mb-6 flex items-center gap-3">
                             <div className="rounded-full bg-white/20 p-3 backdrop-blur-sm">
-                                <Building2 className="h-8 w-8 text-white"/>
+                                <Building2 className="h-8 w-8 text-white" />
                             </div>
                             <Badge variant="secondary"
-                                   className="flex flex-col leading-tight bg-white/20 text-white text-xs backdrop-blur-sm border-white/20 hover:scale-105">
+                                className="flex flex-col leading-tight bg-white/20 text-white text-xs backdrop-blur-sm border-white/20 hover:scale-105">
                                 <span className="font-bold">Vicerrectoría de Extensión y </span>
                                 <span className="font-bold">Proyección Social</span>
                             </Badge>
@@ -97,21 +168,20 @@ export default function InformationGeneral() {
                         </h1>
 
                         <p className="mb-8 text-xl text-blue-100 leading-relaxed">
-                            Conectamos el talento universitario con oportunidades reales en el sector empresarial,
-                            formando
-                            profesionales competentes y comprometidos con el desarrollo social.
+                            Impulsamos el talento Unimagdalena hacia experiencias significativas en el sector productivo, 
+                            fortaleciendo el desarrollo profesional y contribuyendo a la transformación sostenible del territorio.
                         </p>
 
                         {/* Bagdes */}
                         <div className="flex flex-wrap gap-4">
                             <div
                                 className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm hover:scale-105 hover:bg-white/20 transition-colors">
-                                <MapPin className="h-4 w-4 text-orange-300"/>
+                                <MapPin className="h-4 w-4 text-orange-300" />
                                 <span className="text-sm text-white">Santa Marta, Colombia</span>
                             </div>
                             <div
                                 className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm hover:scale-105 hover:bg-white/20 transition-colors">
-                                <Award className="h-4 w-4 text-orange-300"/>
+                                <Award className="h-4 w-4 text-orange-300" />
                                 <span className="text-sm text-white">Acreditación Alta Calidad</span>
                             </div>
                         </div>
@@ -128,38 +198,24 @@ export default function InformationGeneral() {
                 <Card className="col-span-2">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <CheckCircle className="h-5 w-5 text-green-600"/>
+                            <CheckCircle className="h-5 w-5 text-green-600" />
                             Misión
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="space-y-4 text-gray-700 leading-relaxed">
+                        <div className="space-y-4 text-gray-700 leading-relaxed text-lg">
                             <p>
-                                <strong>Formar profesionales competentes:</strong> Brindar a los estudiantes la
-                                oportunidad de demostrar
-                                las competencias adquiridas para desempeñarse como profesionales altamente calificados,
-                                según los
-                                requisitos de la legislación vigente.
+                                <strong>La Dirección de Prácticas Profesionales</strong> tiene como misión preparar y acompañar a los estudiantes 
+                                en su transición al entorno laboral, conectándolos con escenarios de práctica de calidad que les 
+                                permitan aplicar sus conocimientos, fortalecer sus competencias y crecer profesionalmente.
                             </p>
                             <p>
-                                <strong>Compromiso social:</strong> Formar estudiantes comprometidos con las necesidades
-                                de la
-                                comunidad, elevando los estándares de calidad de las empresas donde se desempeñarán.
+                                <strong>Promovemos</strong> alianzas estratégicas con el sector productivo para generar oportunidades de vinculación, 
+                                contribuyendo a través del talento de nuestros estudiantes, a la transformación sostenible del territorio.
                             </p>
                             <p>
-                                <strong>Formación integral:</strong> Promover estudiantes autodidactas con formación
-                                autónoma,
-                                humanista, reflexiva, creativa y transformadora, en consonancia con la realidad
-                                socioeconómica del país.
-                            </p>
-                            <p>
-                                <strong>Innovación y calidad:</strong> Fomentar la cultura de la innovación, la
-                                excelencia
-                                académica y la responsabilidad social en cada etapa del proceso formativo, garantizando
-                                que
-                                los estudiantes se conviertan en agentes de cambio comprometidos con el desarrollo
-                                sostenible
-                                y el bienestar colectivo.
+                                <strong>Garantizamos</strong> procesos bajo el cumplimiento de la normativa institucional y nacional, asegurando la transparencia y
+                                la calidad en cada etapa del desarrollo de las prácticas profesionales.
                             </p>
                         </div>
                     </CardContent>
@@ -169,33 +225,37 @@ export default function InformationGeneral() {
                 <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
-                            <Users className="h-5 w-5 text-blue-600"/>
+                            <Users className="h-5 w-5 text-blue-600" />
                             Estadísticas
                         </CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="grid grid-cols-1 gap-4">
-                            <div
-                                className="text-center p-3 bg-blue-50 rounded-lg hover:scale-105 hover:bg-blue-100 transition-colors">
-                                <div className="text-2xl font-bold text-blue-600">700+</div>
-                                <div className="text-sm text-gray-600">Empresas Aliadas</div>
+                        {!statistics ? (
+                            <div className="text-center text-gray-500 py-4">Cargando datos...</div>
+                        ) : (
+                            <div className="grid grid-cols-1 gap-4">
+                                <div
+                                    className="text-center p-3 bg-blue-50 rounded-lg hover:scale-105 hover:bg-blue-100 transition-colors">
+                                    <div className="text-2xl font-bold  text-blue-600">{statistics.empresasAliadasDto}</div>
+                                    <div className="text-sm text-gray-600">Empresas Aliadas</div>
+                                </div>
+                                <div
+                                    className="text-center p-3 bg-orange-50 rounded-lg hover:scale-105 hover:bg-orange-100 transition-colors">
+                                    <div className="text-2xl font-bold text-orange-600">{statistics.tasaExitoDto}</div>
+                                    <div className="text-sm text-gray-600">Tasa de Éxito</div>
+                                </div>
+                                <div
+                                    className="text-center p-3 bg-green-50 rounded-lg hover:scale-105 hover:bg-green-100 transition-colors">
+                                    <div className="text-2xl font-bold text-green-600">{statistics.estudiantesAnioDto}</div>
+                                    <div className="text-sm text-gray-600">Estudiantes/Año</div>
+                                </div>
+                                <div
+                                    className="text-center p-3 bg-purple-50 rounded-lg hover:scale-105 hover:bg-purple-100 transition-colors">
+                                    <div className="text-2xl font-bold text-purple-600">{statistics.vinculacionLaboralDto}</div>
+                                    <div className="text-sm text-gray-600">Vinculación laboral Post-Practica</div>
+                                </div>
                             </div>
-                            <div
-                                className="text-center p-3 bg-orange-50 rounded-lg hover:scale-105 hover:bg-orange-100 transition-colors">
-                                <div className="text-2xl font-bold text-orange-600">95%</div>
-                                <div className="text-sm text-gray-600">Tasa de Éxito</div>
-                            </div>
-                            <div
-                                className="text-center p-3 bg-green-50 rounded-lg hover:scale-105 hover:bg-green-100 transition-colors">
-                                <div className="text-2xl font-bold text-green-600">1,200+</div>
-                                <div className="text-sm text-gray-600">Estudiantes/Año</div>
-                            </div>
-                            <div
-                                className="text-center p-3 bg-purple-50 rounded-lg hover:scale-105 hover:bg-purple-100 transition-colors">
-                                <div className="text-2xl font-bold text-purple-600">86%</div>
-                                <div className="text-sm text-gray-600">Vinculación laboral Post-Practica</div>
-                            </div>
-                        </div>
+                        )}
                     </CardContent>
                 </Card>
             </div>
@@ -204,7 +264,7 @@ export default function InformationGeneral() {
             <Card>
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
-                        <Building2 className="h-5 w-5 text-blue-600"/>
+                        <Building2 className="h-5 w-5 text-blue-600" />
                         Principales Funciones
                     </CardTitle>
                 </CardHeader>
@@ -288,43 +348,46 @@ export default function InformationGeneral() {
             </Card>
 
             {/* Equipo DIPPRO */}
-            <Card>
+            <Card className="shadow-lg">
                 <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Users className="h-5 w-5 text-purple-600"/>
+                    <CardTitle className="flex items-center gap-2 text-2xl">
+                        <Users className="h-6 w-6 text-purple-600" />
                         Nuestro Equipo
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="text-center">
-                            <div
-                                className="w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                                <Users className="h-8 w-8 text-white"/>
-                            </div>
-                            <h4 className="font-semibold text-gray-800">Directora</h4>
-                            <p className="text-sm text-gray-600">Coordinación general y relaciones institucionales</p>
+                    {!teamMembers.length ? (
+                        <div className="text-center text-gray-500 py-4">Cargando equipo...</div>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                            {teamMembers.map((member) => (
+                                <div key={member.idDto} className="text-center">
+                                    <div
+                                        className="w-24 h-24 rounded-full mx-auto mb-3 overflow-hidden border-4 border-gray-300 shadow-md transform hover:scale-105 transition-transform duration-300 flex items-center justify-center bg-gray-100"
+                                    >
+                                        {member.imageUrlDto ? (
+                                            <img
+                                                src={getFullImageUrl(member.imageUrlDto)}
+                                                alt={`Foto de ${member.nameDto || member.roleDto}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        ) : (
+                                            <User className="w-12 h-12 text-gray-400" />
+                                        )}
+                                    </div>
+                                    <h4 className="font-bold text-lg text-gray-800">{member.roleDto}</h4>
+                                    {member.nameDto && (
+                                        <p className="text-sm text-gray-700 font-medium">{member.nameDto}</p>
+                                    )}
+                                    <p className="text-sm text-gray-600">{member.descriptionDto}</p>
+                                </div>
+                            ))}
                         </div>
-                        <div className="text-center">
-                            <div
-                                className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                                <FileText className="h-8 w-8 text-white"/>
-                            </div>
-                            <h4 className="font-semibold text-gray-800">Coordinadores</h4>
-                            <p className="text-sm text-gray-600">Seguimiento y evaluación de prácticas</p>
-                        </div>
-                        <div className="text-center">
-                            <div
-                                className="w-20 h-20 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full mx-auto mb-3 flex items-center justify-center">
-                                <Building2 className="h-8 w-8 text-white"/>
-                            </div>
-                            <h4 className="font-semibold text-gray-800">Asesores</h4>
-                            <p className="text-sm text-gray-600">Adam Oliveros</p>
-                            <p className="text-sm text-gray-600">Acompañamiento directo a estudiantes</p>
-                        </div>
-                    </div>
+                    )}
                 </CardContent>
             </Card>
+
+            <StudentExperiencesComponent />
         </div>
     )
 }

@@ -5,7 +5,7 @@ import { GeistMono } from "geist/font/mono"
 import "./globals.css"
 
 export const metadata: Metadata = {
-    title: "Dirección de Practicas Profesionales",
+    title: "Dirección de Practicas Profesionales v2",
     description: "Created with React, Tailwind and ShadcnUI",
     generator: "Next.Js",
     creator: "Nelson Martinez Hazbum - Full Stack Developer",

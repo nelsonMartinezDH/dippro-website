@@ -1,0 +1,128 @@
+[
+  {
+    "program": "Administración de Empresas",
+    "faculty": "Ciencias Empresariales y Económicas",
+    "skills": ["Gestión Organizacional", "Marketing", "Finanzas", "Recursos Humanos"],
+    "color": "blue",
+    "description": "Profesionales capacitados para liderar organizaciones y optimizar procesos empresariales."
+  },
+  {
+    "program": "Contaduría Pública",
+    "faculty": "Ciencias Empresariales y Económicas",
+    "skills": ["Contabilidad", "Auditoría", "Tributaria", "Costos"],
+    "color": "green",
+    "description": "Expertos en información financiera, control fiscal y asesoría contable."
+  },
+  {
+    "program": "Economía",
+    "faculty": "Ciencias Empresariales y Económicas",
+    "skills": ["Análisis Económico", "Investigación", "Proyectos", "Política Económica"],
+    "color": "purple",
+    "description": "Analistas especializados en comportamiento económico y formulación de políticas."
+  },
+  {
+    "program": "Negocios Internacionales",
+    "faculty": "Ciencias Empresariales y Económicas",
+    "skills": ["Comercio Exterior", "Logística", "Negociación", "Mercados Globales"],
+    "color": "indigo",
+    "description": "Especialistas en comercio internacional y expansión empresarial global."
+  },
+  {
+    "program": "Ingeniería de Sistemas",
+    "faculty": "Ingeniería",
+    "skills": ["Desarrollo de Software", "Base de Datos", "Redes", "Ciberseguridad"],
+    "color": "blue",
+    "description": "Desarrolladores y arquitectos de soluciones tecnológicas innovadoras."
+  },
+  {
+    "program": "Ingeniería Civil",
+    "faculty": "Ingeniería",
+    "skills": ["Estructuras", "Construcción", "Geotecnia", "Hidráulica"],
+    "color": "orange",
+    "description": "Profesionales en diseño, construcción y mantenimiento de infraestructura."
+  },
+  {
+    "program": "Ingeniería Industrial",
+    "faculty": "Ingeniería",
+    "skills": ["Procesos", "Calidad", "Logística", "Optimización"],
+    "color": "red",
+    "description": "Optimizadores de procesos productivos y sistemas organizacionales."
+  },
+  {
+    "program": "Ingeniería Electrónica",
+    "faculty": "Ingeniería",
+    "skills": ["Automatización", "Telecomunicaciones", "Control", "Instrumentación"],
+    "color": "cyan",
+    "description": "Especialistas en sistemas electrónicos y automatización industrial."
+  },
+  {
+    "program": "Ingeniería Pesquera",
+    "faculty": "Ingeniería",
+    "skills": ["Acuicultura", "Procesamiento", "Calidad Pesquera", "Sostenibilidad"],
+    "color": "teal",
+    "description": "Expertos en recursos pesqueros y acuicultura sostenible."
+  },
+  {
+    "program": "Ingeniería Agronómica",
+    "faculty": "Ciencias Agropecuarias",
+    "skills": ["Producción Agrícola", "Suelos", "Fitosanidad", "Sostenibilidad"],
+    "color": "green",
+    "description": "Especialistas en producción agrícola sostenible y manejo de cultivos."
+  },
+  {
+    "program": "Medicina",
+    "faculty": "Ciencias de la Salud",
+    "skills": ["Diagnóstico", "Tratamiento", "Prevención", "Investigación Clínica"],
+    "color": "red",
+    "description": "Profesionales de la salud especializados en atención médica integral."
+  },
+  {
+    "program": "Enfermería",
+    "faculty": "Ciencias de la Salud",
+    "skills": ["Cuidado Integral", "Promoción", "Prevención", "Rehabilitación"],
+    "color": "pink",
+    "description": "Especialistas en cuidado de la salud y atención humanizada."
+  },
+  {
+    "program": "Psicología",
+    "faculty": "Ciencias de la Salud",
+    "skills": ["RRHH", "Organizacional", "Clínica", "Educativa"],
+    "color": "purple",
+    "description": "Profesionales del comportamiento humano en diversos contextos."
+  },
+  {
+    "program": "Derecho",
+    "faculty": "Humanidades",
+    "skills": ["Jurídica", "Contratos", "Litigios", "Asesoría Legal"],
+    "color": "gray",
+    "description": "Asesores legales especializados en diversas ramas del derecho."
+  },
+  {
+    "program": "Licenciatura en Lenguas Extranjeras",
+    "faculty": "Humanidades",
+    "skills": ["Inglés", "Francés", "Traducción", "Pedagogía de Idiomas"],
+    "color": "green",
+    "description": "Profesionales en enseñanza y traducción de idiomas extranjeros."
+  },
+  {
+    "program": "Biología",
+    "faculty": "Ciencias Básicas",
+    "skills": ["Investigación", "Biotecnología", "Ecología", "Laboratorio"],
+    "color": "green",
+    "description": "Investigadores especializados en ciencias biológicas y biotecnología."
+  },
+  {
+    "program": "Licenciatura en Química",
+    "faculty": "Ciencias de la Educación",
+    "skills": ["Didáctica de la Química", "Enseñanza de Ciencias", "Laboratorio Escolar", "Investigación Educativa"],
+    "color": "blue",
+    "description": "Profesionales expertos en la enseñanza de la química y la divulgación científica."
+  },
+  {
+    "program": "Licenciatura en Matemáticas",
+    "faculty": "Ciencias De la Educación",
+    "skills": ["Didáctica de las Matemáticas", "Razonamiento Lógico", "Modelación Matemática", "Investigación Educativa"],
+    "color": "indigo",
+    "description": "Profesionales dedicados a la enseñanza innovadora y la formación matemática de alta calidad."
+  }
+]

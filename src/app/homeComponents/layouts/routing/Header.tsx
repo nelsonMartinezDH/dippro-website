@@ -1,8 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import { Search, Menu, X } from 'lucide-react'
+import { Search, Menu, X, UserCog } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -51,6 +52,18 @@ export default function Header() {
                         <Button variant="ghost" size="icon" className="text-white hover:text-orange-300 hover:bg-white/10">
                             <Search className="h-5 w-5" />
                         </Button>
+
+                        {/* Icono de usuario para ir al panel */}
+                        <Link href="/admin">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="text-white hover:text-orange-300 hover:bg-white/10 transition"
+                                title="Ir al panel administrativo"
+                            >
+                                <UserCog className="h-8 w-8" />
+                            </Button>
+                        </Link>
                     </nav>
 
                     {/* Button: mobile version */}
@@ -77,6 +90,15 @@ export default function Header() {
                                     {item}
                                 </a>
                             ))}
+
+                            {/* Icono de usuario en móvil */}
+                            <Link
+                                href="/admin"
+                                className="flex items-center gap-2 py-2 px-2 text-sm font-medium hover:text-orange-300 hover:bg-white/10 rounded transition"
+                            >
+                                <UserCog className="h-5 w-5" />
+                                <span>Panel Administrativo</span>
+                            </Link>
                         </div>
                     </nav>
                 )}

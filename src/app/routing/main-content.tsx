@@ -2,13 +2,15 @@
 
 import {useState} from "react";
 import InformationGeneral from "@/app/homeComponents/sections/information-general";
-import EmptySection from "@/app/homeComponents/layouts/Empty-Section";
+import Contact from "@/app/homeComponents/sections/contact";
 import ForCompanies from "@/app/homeComponents/sections/for-companies";
+import ForStudents from "@/app/homeComponents/sections/for-students";
+import Convocatorias from "@/app/homeComponents/sections/convocatorias";
 
 export default function MainContent() {
     const [activeTab, setActiveTab] = useState("Información General")
 
-    const tabs = ["Información General", "Para Empresas", "Para Estudiantes", "Recursos", "Contacto"]
+    const tabs = ["Información General", "Para Empresas", "Para Estudiantes", "Convocatorias", "Contacto"]
 
     const renderTabContent = () => {
         switch (activeTab) {
@@ -19,28 +21,14 @@ export default function MainContent() {
                 return <ForCompanies/>;
 
             case "Para Estudiantes":
-                return (
-                    <EmptySection
-                        title="Sección Para Estudiantes"
-                        description="Esta sección estará disponible próximamente con información para estudiantes."
-                    />
-                )
+                return <ForStudents/>
 
-            case "Recursos":
-                return (
-                    <EmptySection
-                        title="Sección de Recursos"
-                        description="Esta sección estará disponible próximamente con documentos y materiales de apoyo."
-                    />
-                )
+            case "Convocatorias":
+                return <Convocatorias />
 
             case "Contacto":
-                return (
-                    <EmptySection
-                        title="Sección de Contactos"
-                        description="Esta sección estará disponible próximamente con información de contacto detallada."
-                    />
-                )
+                return <Contact />
+
             default:
                 return <InformationGeneral/>
         }
@@ -51,8 +39,8 @@ export default function MainContent() {
             {/* Titulo */}
             <div className="text-center mb-8">
                 <h1 className="text-4xl font-bold text-gray-800 mb-4">Dirección de Prácticas Profesionales</h1>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                    Conectamos el talento universitario con oportunidades reales en el sector empresarial
+                <p className="text-xl text-gray-600 max-w-6xl mx-auto pb-2">
+                    Impulsamos el talento Unimagdalena hacia experiencias significativas en el sector productivo
                 </p>
             </div>
 

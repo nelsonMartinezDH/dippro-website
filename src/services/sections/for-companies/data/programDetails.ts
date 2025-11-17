@@ -1,0 +1,192 @@
+export const programDetails: Record<string, any> = {
+        "Administración de Empresas": {
+            name: "Administración de Empresas",
+            faculty: "Ciencias Empresariales y Económicas",
+            sniesCode: "19781",
+            accreditations: [
+                {
+                    type: "Alta Calidad Nacional",
+                    entity: "Ministerio de Educación Nacional",
+                    resolution: "No. 17371 del 27 de diciembre del 2019",
+                    validity: "4 años",
+                },
+                {
+                    type: "Acreditación Internacional Platinum Class",
+                    entity: "Education Quality Acreditation Agency (EQUAA)",
+                    year: "2024",
+                    validity: "4 años",
+                },
+            ],
+            qualifiedRegistry: {
+                resolution: "No. 013454 del 22 de julio del 2020",
+                validity: "7 años",
+            },
+            description:
+                "El Programa de Administración de Empresas adscrito a la Facultad de Ciencias Empresariales y Económicas de la Universidad del Magdalena, fue creado con el Acuerdo Académico N.º 26 del 2000, cuenta con registro calificado dado por la Resolución N.º 013454 de 2020 y se identifica con el Código SNIES 19781. Fue reconocido con Acreditación por Alta Calidad otorgada por el Ministerio de Educación Nacional mediante Resolución N.º 17371 del 2019 y con Acreditación Internacional Gold Class otorgada por EQUAA (Education Quality Acreditation Agency). Actualmente se encuentra en proceso de Autoevaluación con fines de Renovación de Acreditación por Alta Calidad.",
+            mission:
+                "Formarse en el Programa de Administración de Empresas adscrito a la Facultad de Ciencias Empresariales y Económicas de la Universidad del Magdalena, permitirá a los futuros profesionales asumir el rol de líderes y emprendedores, a través de la creación y desarrollo de soluciones empresariales de calidad que satisfagan las necesidades de los ciudadanos, ser competitivos en el mundo de los negocios y participar de manera ética y responsable, en las transformaciones sociales, políticas y económicas de los países donde residan.",
+            professionalProfile:
+                "El Administrador de Empresas de la Universidad del Magdalena estará en capacidad de, administrar y gestionar las organizaciones, así como crear su propia empresa, con liderazgo, pensamiento estratégico, trabajo en equipo, compromiso ético y responsabilidad social para el logro de los objetivos empresariales, atendiendo las necesidades en un contexto global para contribuir en su desarrollo sostenible.",
+            occupationalProfile: [
+                {
+                    area: "Gremios y Empresas",
+                    description:
+                        "Los gremios y empresas en los niveles de dirección, asesoría en los procesos decisorios y ámbitos de la planificación, administración y gestión de los procesos administrativos.",
+                },
+                {
+                    area: "Sector Privado",
+                    description:
+                        "En las organizaciones del sector privado también podrá ejercer cargos de Dirección, relacionados con las diferentes áreas funcionales de la misma, tales como: la producción, el mercadeo, las finanzas y el capital humano; siendo actor principal en la proposición de diseños y puesta en marcha de estrategias más eficaces y eficientes para el logro de los objetivos empresariales.",
+                },
+                {
+                    area: "Proyectos y Consultoría",
+                    description:
+                        "En la gestión y ejecución de proyectos para el desarrollo empresarial, en las áreas de Recursos Humanos, Administración de la Producción, Dirección Estratégica, Mercadeo, Finanzas Corporativas, Tesorería, Compras, y Negocios. Consultor en los diferentes sectores empresariales, desarrollando iniciativas empresariales que le permitan crear su propia empresa, y contribuir al desarrollo del territorio.",
+                },
+                {
+                    area: "Entidades Públicas",
+                    description:
+                        "Entidades públicas tanto del orden nacional como territorial, liderando procesos administrativos y financieros para el buen funcionamiento de estas.",
+                },
+            ],
+            learningOutcomes: [
+                {
+                    code: "RA1",
+                    description:
+                        "Desarrolla los procesos administrativos utilizando recursos de manera eficiente en respuesta a los grupos de interés en diferentes entornos globales para el desarrollo sostenible del negocio.",
+                },
+                {
+                    code: "RA2",
+                    description:
+                        "Aplica herramientas gerenciales liderando el trabajo en equipo y la comunicación asertiva en la gestión del talento humano orientado al logro de las metas organizacionales.",
+                },
+                {
+                    code: "RA3",
+                    description:
+                        "Diseña estrategias de mercadeo, con base en la investigación e innovación, en respuesta a las necesidades del mercado en contribución a la competitividad y sostenibilidad de la empresa.",
+                },
+                {
+                    code: "RA4",
+                    description:
+                        "Integra las tecnologías y los sistemas de información en la gestión organizacional con compromiso ético y responsabilidad social con los entornos.",
+                },
+                {
+                    code: "RA5",
+                    description:
+                        "Genera alternativas de solución, con base en la interpretación de la información contable y financiera para la toma de decisiones.",
+                },
+            ],
+            contact: {
+                director: "Yesid Javier Cuello Cantillo",
+                email: "admonempresas@unimagdalena.edu.co",
+                phone: "4381000 Ext. 3321-3322",
+                location:
+                    "Calle 29H3 No. 22-01, Edificio Ciénaga Grande Norte, Piso 3. Facultad de Ciencias Empresariales y Económicas. Santa Marta, Magdalena.",
+            },
+        },
+
+        "Ingeniería de Sistemas": {
+            name: "Ingeniería de Sistemas",
+            faculty: "Ingeniería",
+            sniesCode: "3147",
+            accreditations: [
+                {
+                    type: "Acreditación por Alta Calidad",
+                    entity: "Ministerio de Educación Nacional",
+                    resolution: "No. 001028 del 03 de febrero de 2023",
+                    validity: "6 años",
+                },
+            ],
+            qualifiedRegistry: {
+                resolution: "No. 001028 del 03 de febrero de 2023",
+                validity: "7 años",
+            },
+            description:
+                "Este programa académico se encuentra acreditado por alta calidad. Resolución 001028 de 03 de febrero de 2023, Vigencia 6 años. El programa tiene Doble titulación con la Universidad Polytech Nantes, Francia.",
+            mission:
+                "Los Objetivos Educativos del Programa OEP describen lo que se espera que logren los graduados en unos pocos años después de egresar. Los OEPs del programa de Ingeniería de Sistemas de la Universidad del Magdalena son los siguientes: Los graduados desempeñarán su profesión en las áreas de la Ingeniería con responsabilidad ética, fundamentos científicos, tecnológico, espíritu innovador y competitividad. Los graduados tendrán habilidad para conformar y liderar equipos de trabajo, para la resolución ingenieril de problemas desde la interdisciplinariedad. Los graduados serán capaces de generar ambientes propicios para el aprendizaje autónomo-continuo para el desarrollo de su disciplina y la vida. Los graduados del programa conciben, diseñan, implementan y operan sistemas de tecnologías de información para la ejecución efectiva de procesos que generan una transformación positiva y sostenible en el territorio.",
+            professionalProfile:
+                "El Ingeniero de Sistemas de la Universidad del Magdalena se destaca por su capacidad para concebir, diseñar, implementar y operar sistemas computacionales que contribuyan a la solución de problemas del entorno y al fortalecimiento organizacional. Además, se caracteriza por sus habilidades blandas que le permiten participar en diferentes tipos de proyectos, con estándares de calidad y sostenibilidad.",
+            occupationalProfile: [
+                {
+                    area: "Desarrollador de Software",
+                    description:
+                        "Persona capaz de participar en un grupo de investigación y desarrollo de sistemas informáticos, asumiendo la función de diseñador y desarrollador del componente computacional, de común acuerdo con los demás miembros del grupo.",
+                },
+                {
+                    area: "Jefe de Proyectos de Sistemas",
+                    description:
+                        "Líder de un grupo de investigación y desarrollo de sistemas, capaz de identificar áreas de aplicación de los sistemas y computación que sean útiles al cumplimiento de la misión de la compañía. Adicionalmente administrar los recursos financieros y humanos que permitan tener proyectos exitosos; así como de manejar con eficiencia y eficacia las relaciones entre los usuarios finales y los miembros del grupo de investigación y desarrollo (I + D).",
+                },
+                {
+                    area: "Analista de Negocios",
+                    description:
+                        "Función de analista de negocios, capaz de buscar soluciones de tecnologías de información a partir de problemas o necesidades del negocio. Adicionalmente servir de puente entre los usuarios finales y los desarrolladores de software. Así como responsable último del desarrollo, prueba, implantación y entrenamiento a usuarios de los sistemas generados.",
+                },
+                {
+                    area: "Administrador de Servicios Informáticos",
+                    description:
+                        "Persona responsable por la provisión de servicios informáticos o tele-informáticos que sirven de base a la labor de una organización. Es capaz no solamente de mantener en funcionamiento la infraestructura requerida para esto, sino de coordinar un adecuado mantenimiento y renovación de equipos y sistemas computacionales base.",
+                },
+                {
+                    area: "Director de Sistemas",
+                    description:
+                        "Persona a cuyo cargo está la administración de los servicios informáticos de una organización, así como la infraestructura tecnológica y humana que los hacen posibles. Lidera la identificación de oportunidades informáticas para el cumplimiento de la misión corporativa y para el aumento de su eficiencia. Es un gerente de servicios informáticos capaz de articular éstos con los demás recursos de la organización.",
+                },
+                {
+                    area: "Consultor",
+                    description:
+                        "Experto en un área de trabajo informático que es capaz de asesorar a otras personas u organizaciones en la identificación de oportunidades informáticas para la solución de problemas de su campo de especialidad, en la identificación y valoración de alternativas, en la orientación y entrenamiento personal, así como en la puesta en marcha y seguimiento de las líneas de acción aplicables.",
+                },
+                {
+                    area: "Profesor/Investigador",
+                    description:
+                        "Persona con vocación académica, interesada en el desarrollo de los sistemas y computación (o alguna de sus dimensiones) como área del saber y de la aplicación. Comprometido con el desarrollo de los recursos humanos y del saber, así como con la difusión de este y su aplicación a diversos campos de la actividad humana.",
+                },
+            ],
+            learningOutcomes: [
+                {
+                    code: "RA1",
+                    description:
+                        "Habilidad para identificar, formular y resolver problemas complejos de ingeniería aplicando principios de ingeniería, ciencias y matemáticas.",
+                },
+                {
+                    code: "RA2",
+                    description:
+                        "Habilidad de aplicar el diseño de ingeniería para generar soluciones que satisfagan necesidades específicas teniendo en cuenta la salud pública, la seguridad y el bienestar, así como factores globales, culturales, sociales, ambientales y económicos.",
+                },
+                {
+                    code: "RA3",
+                    description:
+                        "Habilidad de comunicarse de manera efectiva con una variedad de audiencias.",
+                },
+                {
+                    code: "RA4",
+                    description:
+                        "Habilidad para reconocer responsabilidades éticas y profesionales en situaciones de ingeniería y hacer juicios informados, que deben considerar el impacto de las soluciones de ingeniería en contextos globales, económicos, ambientales y sociales.",
+                },
+                {
+                    code: "RA5",
+                    description:
+                        "Habilidad de funcionar eficazmente en un equipo cuyos miembros juntos brindan liderazgo, crean un entorno colaborativo e inclusivo, establecen metas, planifican tareas y cumplen objetivos.",
+                },
+                {
+                    code: "RA6",
+                    description:
+                        "Habilidad para desarrollar y realizar la experimentación adecuada, analizar e interpretar datos y utilizar el juicio de ingeniería para sacar conclusiones.",
+                },
+                {
+                    code: "RA7",
+                    description:
+                        "Habilidad de adquirir y aplicar nuevos conocimientos según sea necesario, utilizando estrategias de aprendizaje adecuadas.",
+                },
+            ],
+            contact: {
+                director: "AQUILES ALFONSO COHEN LLANES",
+                email: "ingsistemas@unimagdalena.edu.co",
+                phone: "54381000 Ext. 3362 - 3366",
+                location:
+                    "Calle 29H3 No 22-01, Edificio Ciénaga Grande. Bloque Norte Primer Piso. Santa Marta, Magdalena.",
+            },
+        },
+    }

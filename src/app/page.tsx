@@ -1,3 +1,5 @@
+"use client";
+
 import PageLayout from "@/app/routing/page-layout";
 import MainContent from "@/app/routing/main-content";
 
